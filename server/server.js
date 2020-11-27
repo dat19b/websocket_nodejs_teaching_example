@@ -14,6 +14,14 @@ const wss = new WebSocket.Server({ server });
 
 // here goes your code
 
+wss.on('connection', function connection(ws) {
+  console.log('Connection established!')
+  ws.on('message', function incoming(message) {
+    console.log('received: ' + message);
+    ws.send('From server ' + message);
+  });
+  ws.send('something');
+});
 
 // add static webserver folder (html, css, frontend-javascript)
 app.use(express.static('public'));

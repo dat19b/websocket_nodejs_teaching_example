@@ -1,8 +1,8 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="Dockerfile" type="docker-deploy" factoryName="dockerfile" server-name="Docker">
+  <configuration default="false" name="Docker" type="docker-deploy" factoryName="dockerfile" server-name="Docker">
     <deployment type="dockerfile">
       <settings>
-        <option name="imageTag" value="clbo_node" />
+        <option name="imageTag" value="node_websockets" />
         <option name="buildCliOptions" value="" />
         <option name="command" value="node server/server.js" />
         <option name="containerName" value="" />
@@ -15,8 +15,16 @@
             </DockerPortBindingImpl>
           </list>
         </option>
-        <option name="commandLineOptions" value="-v $PROJECT_DIR$/:/app" />
-        <option name="sourceFilePath" value="Dockerfile" />
+        <option name="commandLineOptions" value="" />
+        <option name="sourceFilePath" value="../test/nodejs_start_template/Dockerfile" />
+        <option name="volumeBindings">
+          <list>
+            <DockerVolumeBindingImpl>
+              <option name="containerPath" value="/app" />
+              <option name="hostPath" value="$PROJECT_DIR$/../test/nodejs_start_template" />
+            </DockerVolumeBindingImpl>
+          </list>
+        </option>
       </settings>
     </deployment>
     <method v="2" />
