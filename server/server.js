@@ -16,11 +16,26 @@ const wss = new WebSocket.Server({ server });
 
 wss.on('connection', function connection(ws) {
   console.log('Connection established!')
+  //console.log(wss.clients);
+
   ws.on('message', function incoming(message) {
     console.log('received: ' + message);
-    ws.send('From server ' + message);
+    //ws.send('From server ' + message);
+
+    // broadcaster til alle clienter
+    wss.clients.forEach(function each(client) {
+      if (client !== ws && client.readyState === WebSocket.OPEN) {
+
+        //setTimeout(function (){
+          client.send(message);
+        //}, 2000)
+
+
+      }
+    });
   });
-  ws.send('something');
+
+  //ws.send('Connected to server');
 });
 
 // add static webserver folder (html, css, frontend-javascript)
